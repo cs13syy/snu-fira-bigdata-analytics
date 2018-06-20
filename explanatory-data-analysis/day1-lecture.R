@@ -11,12 +11,14 @@ getwd() #show filepath
 
 
 
+
 #restore the workspace
 save.image("") #restore all info
 #r 데이터 파일(.rdata)은 사진찍은 것 같이 그대로 보존
 #r file(.r)은 일반 문서 형태
 #console 창에 입력하는 것은 메모리 상에 저장됨
 #패키지를 우리의 메모리로 가져오자 library("")
+
 
 
 
@@ -46,6 +48,7 @@ persp3d(x, y, z, col = "blue1", aspect = "iso",
 
 ??persp3d
 rgl::persp3d(volcano) # 패키지 명을 함수 명 앞에 명시
+
 
 
 
@@ -113,6 +116,7 @@ x2
 y = c(1.2, 3.9, 0.4, 0.12)
 y[1:3]
 y[c(1:3)] #C(1:3) = 1 2 3
+
 
 
 
