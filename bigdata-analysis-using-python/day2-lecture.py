@@ -107,8 +107,40 @@ type(x) # <class: 'integer'>
 x = "A"
 type(x) # <class: 'string'>
 
+# bit operation practice
+x, y = False, True 
+(x | y) # T
+x, y = 1, 0
+(x | y)  # 1
+x, y = 0, 0
+(x | y) # 0
+x, y = True, False
+(x & y) # F
+x, y = 0, 1
+(x & y) # 0
+x, y = 1, 0
+(x & y) # 0
+x, y = False, 1 
+(x ^ y) # 1 (WARNING, return numeric)
+x, y = True, True
+(x ^ y) # 0
+x, y = 0, True
+(x ^ y) # 1 (WARNING, return numeric)
 
-
+bin(192) # 0b11000000 (count: 10)
+x = 192 << 1 
+bin(x) # 0b110000000 (count: 11)
+x # 384
+x = 192 >> 1 
+bin(x) # 00b100000 (count: 9)
+x 96
+bin(-192) # -0b11000000
+x = -192 << 1 
+bin(x) # -0b110000000 
+x # -384
+x = -192 >> 1
+bin(x) #-0b110000
+x # -96
 
 
 
