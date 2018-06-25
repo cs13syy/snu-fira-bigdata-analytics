@@ -200,16 +200,11 @@ print('President Barack Obama said,\n "Don\'t just play on your phone,\n\tprogra
 # (3) double quotation marks
 print("President Barack Obama said,\n \"Don't just play on your phone,\n\tprogram it.\"")
 
-
-
-
-
-
-
-
-
-
-
+# data type : string what to remember
+# (1) line continuation : use (()) instead of \
+# (2) if you want to escape from string escape, use raw string 'r'
+# (3) ord() : unicode char -> unicode int
+# (4) chr() : unicode int -> unicode char
 
 
 
