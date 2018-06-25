@@ -143,13 +143,77 @@ bin(x) #-0b110000
 x # -96
 
 
-
-
-
-
-
+===================================================
 
   
+# data type : float practice (1)
+3 + 7.0 # 10.0
+3 * 7.0e+1 # 210.0 (WARNING)
+.0 - .2 # -0.2
+float('+1.2345') # 1.2345
+float('     -12.345') # -12.345
+float(123) # 123.0
+float('-.4528') # -0.4528
+float('-11') # -11.0
+float('1e3') # 1000.0 (WARNING)
+float(-1e-3) # -0.001 (WARNING)
+float('-Infinity') # -inf
+float('3.14') / float(-.1) # -31.4
+
+# data type : float practice (2)
+from fractions import Fraction
+x = Fraction(3, 7)
+print(x) # 3/7
+y = x * 2
+print(y) # 6/7
+a - Fraction(8, 6)
+print(a) # 4/3
+b = Fraction(8, 4)
+print(b) # 2 (WARNING, returns integer)
+c = Fraction(0, 0)
+print(c) # error
+
+
+===================================================
+
+
+# data type : string practice (1)
+'안녕 파이썬' # '안녕 파이썬'
+"안녕 파이썬" # "안녕 파이썬"
+print('안녕 파이썬') # 안녕 파이썬 # print() does not show quotation marks
+print("안녕 파이썬") # 안녕 파이썬 # print() does not show quotation marks
+
+# data type : string practice (2)
+y = '\t일\n월\n화\n수\n목\n금\n\t토'
+y # '\t일\n월\n화\n수\n목\n금\n\t토'
+print(y)
+
+# data type : string quiz
+# print the sentence with 3 methods using print() function only once
+# (1) 3 quotation marks
+print('''
+President Barack Obama said,
+ "Don't just play on your phone,
+\tprogram it."''')
+# (2) single quotation mark
+print('President Barack Obama said,\n "Don\'t just play on your phone,\n\tprogram it."')
+# (3) double quotation marks
+print("President Barack Obama said,\n \"Don't just play on your phone,\n\tprogram it.\"")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # receive input as integer
 z = int(input('Enter integers : '))
 print(z+1)
