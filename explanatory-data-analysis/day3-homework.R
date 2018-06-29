@@ -1,5 +1,6 @@
 # example : break와 stop의 차이 알 수 있는 example을 만들어라
 # example : break
+# break는 두번째 for문까지에 해당, 즉 i는 계속 돌아감
 for (i in 1:3) {
 	for (j in 1:3) {
 		print(c(i, j))
@@ -14,17 +15,18 @@ for (i in 1:3) {
 [1] 3 1
 [1] 3 2
 # example : stop
+# stop은 두번째 뿐만 아니라 첫번째 for문도 멈추게 함
 for (i in 1:3) {
 	for (j in 1:3) {
 		print(c(i, j))
-		if (j==2) stop() # stop() : 에러를 만들어 내는 함수
+		if (j==2) stop()
 	}
 }	
 #result :
 [1] 1 1
 [1] 1 2
 Error: 
-
+# stop() : 에러를 만들어 내는 함수
 
 
 # homework : rowwise average function
