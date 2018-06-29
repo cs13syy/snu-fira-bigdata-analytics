@@ -74,6 +74,7 @@ read.table(file, header = FALSE, sep = "", quote = "\"'",
 # stringsAsFactors = F로 건드리면, 숫자로 읽지 못하는 건 기본적으로 factor로 바꾸는데
 # 그게 시간이 많이 걸리니 하지 말라고 하는 것이다. 이럴 경우 문자열을 있는 그대로 가져온다.
 # numeric -> double (double : python에서 float)
+# csv, xlsx로 파일을 가져오면 데이터프레임 형태로 불러와진다
 
 
 
@@ -243,7 +244,6 @@ abline(h = 1, col = "green") # y=1인 선
 
 
 
-# points 함수도 마찬가지
 # point option : 선언한 원소 순서대로
 plot(x = 1, y = 1, type = 'n', xlim = c(0,10), ylim = c(0,5),
      xlab = 'time', ylab = '# of visiting')
@@ -259,6 +259,7 @@ points(x,y,pch=1:11)
 
 
 
+# exercise
 plot(x = 1,y = 1, type = 'n', xlim = c(0,10), ylim = c(0,5),
      xlab = 'time', ylab = '# of visiting')
 set.seed(1)
@@ -269,15 +270,11 @@ points(x,y,type = 'l', lty=3)
 
 
 
-
-
 # exercise
 View(mtcars)
 str(mtcars)
 plot(mpg ~ disp, data = mtcars, xlab = "displacement", ylab = "mile/gallon",
      main = "scatter plot", pch = 20, col = 'darkblue')
-
-
 
 
 
@@ -291,10 +288,8 @@ points(x,y)
 
 
 
-
-
-# line 순서대로 그리기 때문에 포인트 순서, 정렬이 중요하다
-# 지도 그릴 때 (한국지도의 경우, 제주도는 NA 사용하면 돼)
+# line은 순서대로 그려지기 때문에 포인트 순서, 정렬이 중요하다
+# 지도 그릴 때 (한국 지도의 경우, 제주도는 NA 사용하면 돼)
 plot(0,0, type = 'n', xlim = c(-2,2), ylim = c(-2,2))
 x = c(-2, 1, NA, 1, 0)
 y = c(0, -1, NA, -2, 1)
@@ -302,33 +297,24 @@ lines(x,y)
 
 
 
-
-
-
-# 지도 그리는 경우 group 변수, order 변수 가지는 것이 일반적
-# 1번 그룹, 2번 그룹 지정하면 서로 참조하지 않아
-# order 변수에서는 순서를 지정
-
-
-
-
-
 # recycle : elementwise operation
-plot(0,0, type = 'n', xlim = c(1,5), ylim = c(0,2))
+plot(0, 0, type = 'n', xlim = c(1,5), ylim = c(0,2))
 x = seq(1,5, by = 1) # 차이 1
 x
-abline(v = x, lty = 1:length(x))
+abline(v = x, lty = 1:length(x)) # v=x, x=1, x=2 ... x=5 라인
 
 
 
 # legend : 범례 그리기
 z = sort(rnorm(100)) # rnorm이 random이라서 sort해줌
-y1 = 2+ x + rnorm(100)
+# sort는 작은것부터 큰것 순서대로
+y1 = 2 + x + rnorm(100)
 plot(z, y1, col = "blue", pch = 3)
 points(z, y1/2, col = "red", pch = 19)
 legend("topright", c("pch_3", "pch_19"), col = c("blue", "red"),
        pch = c(3,19))
-# 위치, 텍스트, 컬러, pch - 요 순서
+# 위치, 텍스트, 컬러, pch - 이 순서
+
 
 
 # exercise
@@ -340,15 +326,14 @@ legend("bottomright", c("a", "b"), col = c("blue", "red"),
        pch = c(3,19))
 
 
-# par function : 그래픽 func 조정
-# 레이아웃 조정 : 한 번에 그림을 그리고 싶다
-# 그림의 글자를 키우고 싶다
-# par(mfrow = c(2,1)): 2×1 layout 만들어진 순서대로 넣겠다
-# par(cex = 1.2): set the character expansion be 1.2 (1.2 times larger) 두께
-# par(bg = 'gray90'): set the color of backgroupd by gray90
+
+# par function : 한 layout에 여러 개의 그림을 그리고 싶다, 글자를 키우고 싶다 등의 레이아웃을 조정할 때 사용
+# par(mfrow = c(2,1)): 2×1 layout에 만들어진 순서대로 넣겠다
+# par(cex = 1.2): set the character expansion be 1.2 (1.2 times larger) 크기 조정
+# par(bg = 'gray90'): set the color of backgroupd by gray90 백그라운드 색상 조정
 # par(las = 2): set the text on axis be orthogoal to the axis. 텍스트 세로로 쓰고 싶다
 # par(mai = c(1,2,3,4)): from the bottom clockwisely, set the margin be 1,2,3,and 4. 띄우겠다
-
+# practice
 par(cex=1.2)
 par(cex=3)
 par(cex=1)
@@ -356,6 +341,7 @@ par(bg = 'white')
 
 
 
+# practice
 par (mfrow = c(1,1), bg = 'gray50', col = 'white',
      col.main = 'lightblue', col.axis = 'yellow', 
      col.lab = 'lightgreen')
@@ -380,23 +366,20 @@ plot(x, y, pch = 19)
 
 
 
-
 #regression
 set.seed(1)
 x <- sort(rnorm(100))
 y<- 3+x^2 + rnorm(100)
 plot(x, y, pch = 19)
-lm(y~x)
+lm(y~x) # 포뮬라
 fit = lm(y~x)
 str(fit) # 리스트의 체인? coefficients, residuals, effects 등의 객체 가져올 수 있음 $ 기호로)
-fit$coefficients # 첫번쨰 intercept, 두번째 slope
-coef = fit$coefficients
+fit$coefficients # 첫번째 인덱스 intercept(y절편), 두번째 인덱스 slope(기울기)
+coef = fit$coefficients # coef 변수에 저장
 coef[1] # y절편 : 3.756537 
 coef[2] # x기울기 : 0.1488341 
-# 위 정보로 직선 찾을 수 있음. abline, 절편이 a, 슬로프가 b
-abline(a=coef[1], b=coef[2], col="red") # lm의 라인
-
-
+# 위 정보로 최소제곱법에 의한 직선 찾을 수 있음
+abline(a=coef[1], b=coef[2], col="red") # lm의 라인을 그리기
 
 
 
@@ -407,29 +390,22 @@ lines(x, yTrueMean , lty=2, col='black')
 
 
 
-
-
 install.packages("FNN")
 library(FNN)
 knnx.index(x, 0, k=10)
-# 제일 가까운 애부터 k등까지 위치를 알려줌
-# 찾고자 하는 점들의 위치
+# 0에서 제일 가까운 k개의 위치를 알려줌 (찾고자 하는 점들의 위치)
 a = knnx.index(x, 0, k=10)
 x[47]
 x[46]
 x
-idx = a[1,] # 이 뜻이 뭔지?
+idx = a[1,] # 이 뜻이 뭔지? 0에서 가장 가까운 k개를 포함한 한개의 행
 # 점들을 그래프 위에 빨간색 점으로 표시할거야
 points(x[idx], y[idx], pch=19, col="red")
 # 기준점, x축을 세워주고 싶다
-abline(v=0, lty=3) 
-y[idx]
+abline(v=0, lty=3) # x축 -> v=0
+y[idx] # ?
 mean(y[idx]) # x=0, y^
 abline(h=mean(y[idx]))
-
-
-
-
 
 
 
@@ -450,8 +426,6 @@ y[idx]
 mean(y[idx]) # x=0, y^
 abline(h=mean(y[idx]))
 # ============================================================
-
-
 
 
 
