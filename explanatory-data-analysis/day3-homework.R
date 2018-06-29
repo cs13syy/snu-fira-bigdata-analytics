@@ -1,15 +1,19 @@
 # example : break와 stop의 차이 알 수 있는 example을 만들어라
-v <- c("Hello","loop")
-cnt <- 2
-
-repeat {
-   print(v)
-   cnt <- cnt + 1
-	
-   if(cnt > 5) {
-      break
-   }
+for (i in 1:3) {
+	for (j in 1:3) {
+		print(c(i, j))
+		if (j==2) break
+	}
 }
+
+for (i in 1:3) {
+	for (j in 1:3) {
+		print(c(i, j))
+		if (j==2) stop() # stop() : 에러를 만들어 내는 함수
+	}
+}	
+
+
 
 # homework : rowwise average function
 s_rowMean = function(x)
