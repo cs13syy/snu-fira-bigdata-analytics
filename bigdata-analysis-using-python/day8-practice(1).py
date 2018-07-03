@@ -45,9 +45,9 @@ a[1]
 a[1:4]
 
 a = [123, 'a', 45, 'hello', 678]
-a.extend([5])
+a.extend([5]) # 리스트 형태로 입력해야 한다
 print(a)
-a.append(6)
+a.append(6) # [] 없이 값만 입력하면 된다
 print(a)
 len(a)
 
@@ -93,16 +93,16 @@ sum
 
 # quiz (answer)
 numlist = [2, 6, 10, 3, 8, 2, 12, 4, 0, 5]
-maxnum = numlist[0]
-for x in numlist:
-    if maxnum < x:
-        maxnum = x
-print(maxnum)
+maxnum = numlist[0] # maxnum 변수는 numlist의 첫번째 인덱스 값
+for x in numlist: # numlist 원소 각각에 대해
+    if maxnum < x: # maxnum이 x보다 작으면
+        maxnum = x # maxnum을 x로 교체
+print(maxnum) # 결과적으로 최대값이 numlist의 첫번째 인덱스 값이 된다
 
 
 
 
-# quiz (try)
+# quiz (mine)
 numlist = [2, 6, 10, 3, 8, 2, 12, 4, 0, 5]
 numlist.sort()
 print(numlist[-1])
@@ -120,13 +120,13 @@ print(numlist[-1])
 import numpy as np
 a = np.array([[1, 2, 3],
              [4, 5, 6]])
-print('shape of a: ', a.shape)
+print('shape of a: ', a.shape) # a.shape : a의 행과 열 개수를 반환
 a
 
 a = np.arange(15) # 디폴트 시작이 0, 0부터 15-1까지 (range와 동일)
-a
+a # array([0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
 a = np.arange(1, 15) # 스타트값 지정
-a
+a # array([1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
 np.__version__
 
 a = np.arange(15)
@@ -135,10 +135,26 @@ a = a.reshape(3, 5)
 b = np.arange(15).reshape(3, 5)
 print('a: ', a)
 print('b: ', b)
-
+# a: [[ 0  1  2  3  4]
+      [ 5  6  7  8  9]
+      [10 11 12 13 14]]
+# b: [[ 0  1  2  3  4]
+      [ 5  6  7  8  9]
+      [10 11 12 13 14]]
+     
+     
 np.zeros((3, 4))
+# array([[ 0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.]])
 np.ones((2, 3, 4), dtype = np.int8)
-
+# array([[[1, 1, 1, 1],
+         [1, 1, 1, 1],
+         [1, 1, 1, 1]],
+ 
+         [[1, 1, 1, 1],
+         [1, 1, 1, 1],
+         [1, 1, 1, 1]]], dtype=int8)
 
 
 n = 10
@@ -156,6 +172,9 @@ for i in range(n):
 # numpy indexing
 b = np.arange(15).reshape(3, 5)
 print(b)
+# b: [[ 0  1  2  3  4]
+      [ 5  6  7  8  9]
+      [10 11 12 13 14]]
 print(b[0, 1]) # 인덱싱은 리스트와 똑같다
 print(b[:, np.array([0, 3])]) # 1열과 4열만 뽑는 것
 print(b[np.array([True, False, True]), :])
@@ -163,7 +182,7 @@ print(b[np.array([True, False, True]), :1])
 
 b[np.array([True, False, True]), np.array([0, 3])]
 np.where #조건에 만족하냐 안하냐
-b[np.array([True, False, True])][:, np.array([0,3])]
+b[np.array([True, False, True])][:, np.array([0, 3])]
 tmp = [[1, 2, 3], [4, 5, 6]]
 tmp[1][1]
 
