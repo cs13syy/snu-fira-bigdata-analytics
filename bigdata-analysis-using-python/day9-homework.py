@@ -14,7 +14,6 @@ print(area_triangle(10, 15))
 
 
 def distance(a, b):
-    for i in a, b:
         x = (a[0]-b[0])**2
         y = (a[1]-b[1])**2
         d = (x+y)**(1/2)
