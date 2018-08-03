@@ -1,6 +1,5 @@
 # snu-fira-bigdata-analytics
 2018년도 서울대학교 4차산업혁명 아카데미 [빅데이터 애널리틱스 과정](http://bdi.snu.ac.kr/academy/?page_id=1413) 
---------------------------------
 ## 1st term (2018.6.18 ~ 2018.7.27)
 - 데이터 분석과 추론 [data-analysis-and-inference]
 - 파이썬을 이용한 빅데이터 분석 개론 [bigdata-analysis-using-python]
