@@ -10,7 +10,7 @@
 - 자료기반 통계의사결정모형 [databased-statistical-decision-model]
 - 통계적 빅데이터 학습이론 [statistical-bigdata-learning-theory]
 - 고객관계관리 [customer-relationship-management]
-- 혁신 경영의 기초 [foundation-of-Innovation-Management]
+- 혁신 경영의 기초 [foundation-of-innovation-management]
 
 ### 3rd term (2018.9.10 ~ 2018.10.26)
 - 데이터 기반 마케팅 애널리틱스 [databased-marketing-analytics]
