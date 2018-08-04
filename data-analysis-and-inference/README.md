@@ -1,6 +1,6 @@
 # 데이터 분석과 추론 커리큘럼
 ***
-- 1. 통계학 개요 (Overview of Statistics)
+- 1 통계학 개요 (Overview of Statistics)
 - 2. R의 기초 (Basis of R)
 - 3. 기술통계 (Descriptive Statistics)
 - 4. 확률의 개념 및 확률분포 (Probability and Probability Distribution)
