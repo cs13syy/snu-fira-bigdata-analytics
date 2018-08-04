@@ -28,7 +28,6 @@ print(b.grad)    # b.grad = 1
 x = torch.randn(10, 3) # 10행 3열 짜리 매트릭스를 텐서로 만들어라
 y = torch.randn(10, 2)
 
-
 # Build a fully connected layer.
 linear = nn.Linear(3, 2) # torch 안 클래스 nn을 가져오겠다, 선형 모형을 하겠다, y=2x+3
 print ('w: ', linear.weight)
@@ -71,13 +70,7 @@ print('loss after 1 step optimization: ', loss.item())
 
 
 
-
-
 ####################### Loading data from numpy
 
 x_np = np.array([[1,2], [3,4]])
-
 x_t = torch.from_numpy(x_np)
-
-
-
