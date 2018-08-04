@@ -14,10 +14,10 @@ print(area_triangle(10, 15))
 
 
 def distance(a, b):
-        x = (a[0]-b[0])**2
-        y = (a[1]-b[1])**2
-        d = (x+y)**(1/2)
-        return d
+    x = (a[0]-b[0])**2
+    y = (a[1]-b[1])**2
+    d = (x+y)**(1/2)
+    return d
 print(distance((1,2), (5,7)))
 # 2차원 공간 상에서 두 점 사이의 거리를 계산하는 distance() 함수를 정의했다.
 # 함수의 매개변수로 a, b를 생성하여 2차원 공간 상에서 두 점의 좌표를 받도록 했다.
