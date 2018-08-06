@@ -83,7 +83,7 @@
 - simpson's paradox, association & causation 회귀분석에서 조심해야
 - data sneeping 5% 함정 어쩌다 보니 유의하게 나왔을 수도
 
-**
+***
 
 ## 가변수 (dummy variable)
 - xi = 1 또는 0 -> i번째 사람이 여성이면 1,  i번째 사람이 남성이면 0
