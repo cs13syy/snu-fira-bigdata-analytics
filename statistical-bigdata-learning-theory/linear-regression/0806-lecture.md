@@ -28,7 +28,7 @@
 
 ***
 
-## 단순회귀모형
+## 단순회귀모형 (Simple Linear Regression)
 - 광고 데이터(advertising) : 매체 별로 sales 추이
 - E[y] = f(x1, x2, x3)
 - y=sales, x1=tv, x2=radio, x3=news
@@ -67,7 +67,7 @@
 
 ***
 
-## 중회귀모형
+## 중회귀모형 (Multiple Linear Regression)
 - 모형 : 각각의 설명력은 떨어질 수 있어도 변수들의 조합이 중요
 - Y = b0 + b1*x1 + ... + bp*xp + e
 - (Y-XB)t(Y-XB)
@@ -85,6 +85,6 @@
 
 ***
 
-## 가변수 (dummy variable)
+## 가변수 (Dummy Variable)
 - xi = 1 또는 0 -> i번째 사람이 여성이면 1,  i번째 사람이 남성이면 0
 - 가변수 개수는 데이터 개수 -1
