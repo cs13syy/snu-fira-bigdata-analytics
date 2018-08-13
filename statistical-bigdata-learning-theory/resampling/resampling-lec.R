@@ -82,6 +82,7 @@ ofit = mpg.fit$fitted # estimate
 betaest = mpg.fit$coefficients # beta estimates
 n = length(oresid)
 
+# sampling and fitting
 B = 1000 # number of sampling
 d = length(seq(46,230,1)) # 185
 bootfit = matrix(0,B,d) # nrow=1000, ncol=185
@@ -101,3 +102,11 @@ r = ose.fit/bse.fit
 plot(seq(46,230,1), r, type="l", ylim=c(0.5, 2))
 abline(h=1, col="blue") # bse.fit is nearly same with ose.fit
 title("ratio of standard errors: theory to bootstrap")
+
+# bootstrap confidence band
+upper = mpg.pred$fit + 1.96*bse.fit
+lower = mpg.pred$fit - 1.96*bse.fit
+plot(seq(46,230,1), mpg.pred$fit, type="l", xlab="horsepower", ylab="mpg", ylim=c(5,40))
+lines(seq(46,230,1),upper,col="blue")
+lines(seq(46,230,1),lower,col="blue")
+title("bootstrap confidence band (pointwise)")
