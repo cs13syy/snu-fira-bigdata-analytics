@@ -1,4 +1,5 @@
-# 선형모델 선택 및 regularization (Linear Model Selection and Regularization)
+# 선형모델 선택 및 regularization 
+# (Linear Model Selection and Regularization)
 - 선형모델은 약간의 확장만으로 non-linear 모델과 비교하여 놀라울 정도로 경쟁력을 갖고 있다
 - 일반 최소제곱적합을 다른 적합절차로 대체하여 단순선형모델을 개선할 수 있는 몇 가지 방법을 논의한다
 - 그렇다면 왜 OLS 말고 다른 적합절차를 사용하는가? 예측 정확도와 해석력 때문
