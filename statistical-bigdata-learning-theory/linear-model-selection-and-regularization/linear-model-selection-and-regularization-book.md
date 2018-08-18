@@ -5,9 +5,9 @@
 - 예측 정확도 : p(변수의 개수)가 n(자료 개수)보다 많아지는 상황에서는 variance가 폭등
 - 해석력 : OLS는 실제 Y 함수의 이해에 상관이 없는 변수를 없애주지 못한다 -> 계수를 0을 만들기 어렵다
 - 이 장에서는 크게 세 가지 방법에 대해 배운다
-- 1. Subset Selection : 유의미한 설명변수만을 부분집합으로 추려서 OLS를 시행하는 방법
-- 2. Shrinkage Methods : 모든 변수로 적합을 하되 계수들을 0으로 regularize하는 방법
-= 3. Dimention Reduction : 큰 차원의 p개의 예측 변수를 m차원으로 투영(projection)시키는 방법
+- 1) Subset Selection : 유의미한 설명변수만을 부분집합으로 추려서 OLS를 시행하는 방법
+- 2) Shrinkage Methods : 모든 변수로 적합을 하되 계수들을 0으로 regularize하는 방법
+= 3) Dimention Reduction : 큰 차원의 p개의 예측 변수를 m차원으로 투영(projection)시키는 방법
 - 보통 regression에 중점을 두고 있지만 classification에서도 사용할 수 있다
 ***
 ## 부분집합 선택 (Subset Selection)
@@ -37,8 +37,8 @@
 ***
 ## Choosing the Optimal Model
 - 좋은 모델의 판단 기준으로 test error를 추정하는 방법
-- 1. training error rate에 overfitting을 고려한 수학적인 보정을 가하여 test error를 간접 추정
-- 2. training set 중 몇 개를 따로 빼내서 test error를 직접 추정 (resampling methods)
+- 1) training error rate에 overfitting을 고려한 수학적인 보정을 가하여 test error를 간접 추정
+- 2) training set 중 몇 개를 따로 빼내서 test error를 직접 추정 (resampling methods)
 ### Cp, AIC, BIC, and Adjusted R2
 - training error rate에 overfitting을 고려한 수학적인 보정을 가하여 test error를 간접 추정
 - 변수의 개수가 다른 모델들 간의 비교도 가능하다
@@ -51,6 +51,7 @@
 - 위 방법보다 이점이 많다 -> 가정을 거의 하지 않고, 또 자유도를 구하기 힘들거나 σ^2를 구하기 힘든 여러 경우에도 사용될 수 있음
 - 어떠한 회귀 문제에서 다양한 기준을 놓고 판단하려고 할 때, one-standard-error-rule을 적용한다
 - one-standard-error-rule : 추정된 test MSE가 크게 다르지 않은 수준 내에서, 가장 단순한 모델을 고르고자 함
+***
 ## Shrinkage Methods
 - 모든 변수로 적합을 하되, 계수들을 0으로 regularize하는 방법
 - 추정된 계수들의 변동(variance)을 대폭 줄여준다는 이점이 있다
@@ -79,3 +80,4 @@
 - λ, 값을 어떻게 설정할 것인가?
 - 몇몇의 λ 값들을 선정하여 그 값들에 대해 cross-validation을 하고 가장 작은 cross-validation error를 보인 λ를 선정한다
 - 최종적으로 다시 모든 데이터에 대해 해당 λ로 적합을 한다
+***
