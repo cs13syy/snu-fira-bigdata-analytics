@@ -10,7 +10,7 @@
 - 어떻게 해석? 10의 4승, 10의 -1승 사이에 100 간격으로
 
 
-4. mpg~poly(horsepower, i)와 mpg~horsepower+I(horsepower^i)의 차이는?
+4. mpg~poly\(horsepower, i\)와 mpg~horsepower+I(horsepower^i)의 차이는?
 - 앞의 경우 i가 3이면 1,2,3차 / 뒤의 경우 i가 3이면 1,3차
   
   
