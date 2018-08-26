@@ -7,7 +7,7 @@ attach(mail)
 
 # 1. set the baseline
 # 1.1 train set, test set
-set.seed(10)
+set.seed(3)
 index=sample((1:4000),2000)
 train <- mail[index,]
 test <- mail[-index,]
@@ -28,11 +28,12 @@ mail$rfm2=paste0(mail$r2,mail$f2,mail$m2)
 mail$rfm2=factor(mail$rfm2)
 attach(mail)
 # 2.2 train set & test set
-set.seed(10)
+set.seed(3)
 index=sample((1:4000),2000)
 train <- mail[index,]
 test <- mail[-index,]
 # 2.3 find the segments whose purchase rate is high in train set
+library(dplyr)
 rfm2.pred <- aggregate(formula=purchase~rfm2,data=train,FUN=mean)
 rfm2.pred <- arrange(rfm2.pred, desc(rfm2.pred$purchase)) # 222 > 212 > 221
 # 2.4 apply to test set and final purchase rate
@@ -58,7 +59,7 @@ mail$rfm5=paste0(mail$r5,mail$f5,mail$m5)
 mail$rfm5=factor(mail$rfm5)
 attach(mail)
 # 3.2 train set & test set
-set.seed(10)
+set.seed(3)
 index=sample((1:4000),2000)
 train <- mail[index,]
 test <- mail[-index,]
@@ -68,7 +69,7 @@ rfm5.pred <- arrange(rfm5.pred, desc(rfm5.pred$purchase))
 rfm5.pred$purchase.1 <- rfm5.pred$purchase
 rfm5.pred.new <- rfm5.pred[,-3]
 rfm5.500 <- merge(test, rfm5.pred.new, by=c('rfm5'), all.x=TRUE)
-rfm5.500 <- arrange(rfm5.500, desc(rfm5.500$purchase.y)) # train set purchase 기준으로 정렬
+rfm5.500 <- arrange(rfm5.500, desc(rfm5.500$purchase.y)) # train set purchase 기준 정렬
 rfm5.500$rfm5[480:490] # 490부터 521, select 11 among 521
 rfm5.489 <- mean(rfm5.500$purchase.x[1:489])
 length(rfm5.500$id[rfm5.500$rfm5=='521']) # 32
@@ -79,8 +80,7 @@ rfm5.11 <- mean(rfm5.11)
 
 # 4. multiple regression
 # 4.1 train set & test set
-mail <- read.csv("mailorder.csv", header=TRUE)
-set.seed(10)
+set.seed(3)
 index=sample((1:4000),2000)
 train <- mail[index,]
 test <- mail[-index,]
@@ -90,3 +90,43 @@ lm.fit <- lm(purchase~recency+frequency+monetary, data=train)
 summary(lm.fit)
 lm.pred <- predict(lm.fit, newdata=test)
 mean(tail(sort(lm.pred),500)) # 0.1516754
+
+
+# 5. best subset selection
+# 5.1 manipulate categorical data
+mail$gender1[mail$gender=="F"]=1
+mail$gender1[mail$gender=="M"]=0
+set.seed(3)
+index=sample((1:4000),2000)
+train <- mail[index,]
+train <- train[,c(-1,-11,-15)]
+test <- mail[-index,]
+test <- test[,c(-1,-11,-15)]
+# 5.2 train & test set 변수선택
+library(leaps)
+regfit.full <- regsubsets(purchase~recency+frequency+monetary+duration+r2+f2+m2+gender1,train)
+summary(regfit.full)
+reg.summary = summary(regfit.full)
+reg.summary$bic
+plot(reg.summary$bic,xlab="Number of Variables",ylab="BIC",type='l')
+# lm after variable selection
+lm.fit <- lm(purchase~recency+frequency+gender1, data=train)
+summary(lm.fit)
+lm.pred <- predict(lm.fit, newdata=test)
+mean(tail(sort(lm.pred),500)) # 16.7%, 3 -> 15%
+# glm after variable selection
+glm.fit=glm(purchase~recency+frequency+gender1, data=train, 
+            family=binomial)
+summary(glm.fit)
+train.x = train[,c(3,4,13)]
+train.y = train[,6]
+train.all = train[,c(3,4,6,13)]
+test.x = test[,c(3,4,13)]
+test.y = test[,6]
+test.all = test[,c(3,4,6,13)]
+glm.probs=predict(glm.fit,test.x,type="response")
+test.new = cbind(test.y, glm.probs)
+test.new = data.frame(test.new)
+test.new <- arrange(test.new, desc(test.new$glm.probs))
+test.new$test.y[1:500]
+sum(test.new$test.y[1:500])/500 # 0.188
