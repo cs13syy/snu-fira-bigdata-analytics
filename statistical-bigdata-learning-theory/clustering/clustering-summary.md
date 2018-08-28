@@ -33,5 +33,9 @@
 
 ## Principal Component Analysis
 ### concept
-
+- unsupervised : 반응 변수 없는 경우에 속함
+- 
+- 
+- pca regression : 활용 정도 높음. 
 ### code description
+- 
