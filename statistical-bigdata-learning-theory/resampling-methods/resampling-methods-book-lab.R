@@ -1,4 +1,4 @@
-# ISLR - classification - lab
+# ISLR - resampling methods - lab
 
 
 # validation set
