@@ -1,0 +1,22 @@
+library(ISLR)
+fix(Hitters)
+names(Hitters)
+dim(Hitters)
+sum(is.na(Hitters))
+
+Hitters=na.omit(Hitters)
+dim(Hitters)
+sum(is.na(Hitters))
+
+library(leaps)
+regfit.full=regsubsets(Salary~.,Hitters)
+summary(regfit.full)
+regfit.full=regsubsets(Salary~.,data=Hitters,nvmax=19)
+reg.summary=summary(regfit.full)
+names(reg.summary)
+reg.summary$rsq
+par(mfrow=c(2,2))
+plot(reg.summary$rss,xlab='Number of Variables',ylab='RSS',type='l')
+plot(reg.summary$adjr2,xlab='Number of Variables',ylab='Adjusted RSq',type='l')
+which.max(regfit.full$adjr2)
+points(11,regfit.full$adjr2[11],col='red',cex=2,pch=20)
