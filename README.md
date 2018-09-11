@@ -14,7 +14,7 @@
 
 ### 3rd term (2018.9.10 ~ 2018.10.26)
 - 데이터 기반 마케팅 애널리틱스 [databased-marketing-analytics]
-- 고급 빅데이터 분석 기법 [advanced-bigdata-analysis-techniques]
+- 고급 빅데이터 분석 기법 [advanced-bigdata-analysis]
 - 디지털 경제와 경영 전략 [digital-economy-and-management-strategy]
 
 ### capstone project (2018.10.29 ~ 2018.12.14)
