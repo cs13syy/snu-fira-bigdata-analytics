@@ -62,13 +62,15 @@ bound = weightedprice*0.05
 
 profit = function(newprice){
   
-  if (max(abs((newprice-avgpr)/avgpr))>0.05) npredictedprofit = max(abs((newprice-avgpr)/avgpr))*(-10000) # 제약 위반시
+  if (max(abs((newprice-avgpr)/avgpr))>0.05) npredictedprofit = max(abs((newprice-avgpr)/avgpr))*(-10000) 
+  # 제약 위반 시(0.05 이상),  -10000 곱해서 수익 이상하게 만들어버림
   else {
     npredictor = cbind(rep(1,7),t(matrix(rep(log(newprice),7),nrow=7)),log(avgvlag))
     npredictedv = exp(rowSums(npredictor*b1)) # predicted volume
     nweightedprice = sum(npredictedv*newprice)/sum(npredictedv)
     
     if (abs(nweightedprice-weightedprice)>bound) npredictedprofit = abs(nweightedprice-weightedprice)*(-10000)
+    # 제약 위반 시(), -10000 곱해서 수익 이상하게 만들어버림
     else npredictedprofit = sum(npredictedv*(newprice-avgwp)) # 판매량*(가격-마진)
   }
   return(-npredictedprofit) # optim은 minimize니까 - 붙임
