@@ -35,7 +35,7 @@ names(cereals)
 cereals = cereals[, c("name","calories","protein","fat","sodium","fiber","carbo","sugars","potass","vitamins")]
 dim(cereals)
 
-## missing value가 있는 자료는 삭제
+## missing value가 있는 자료 삭제
 cereals[!complete.cases(cereals),]
 cereals <- cereals[complete.cases(cereals),]
 dim(cereals)
