@@ -2,11 +2,10 @@
 #### ch3. target marketing
 ####
 
-
 #### variable selection and penalty method
 
-
 rm(list=ls())
+
 
 # load data
 setwd('C:/Users/yuniv/OneDrive/바탕 화면/SNU FIRA/8_고급빅데이터분석(김용대교수님)/chapter-3')
@@ -38,15 +37,13 @@ train.Y <- buydata[train_ind,1]
 test.X <- buydata[-train_ind,-1]
 test.Y <- buydata[-train_ind,1]
 
-#----------------------------
 
 
 #---- logistic regression (train)
 logit.train <- glm(RESPOND~., data=train, family='binomial')
 
-#----------------------------
 
-# Forward selection (AIC 기준)
+#---- Forward selection (AIC 기준)
 null <- glm(RESPOND~1, data=train)
 full <- glm(RESPOND~., data=train)
 forward <- step(null, scope=list(lower=null, upper=full),
@@ -55,7 +52,6 @@ summary(forward)
 # AIC를 최소화하는 변수들 select, 총 10개 선택
 # 수정했다고 해서 변수들이 다 유의한 것은 아님 (단지 AIC 기준으로 선택했을 뿐)
 
-#----------------------------
 
 # linear regression의 과대적합 및 다중공선성 해결
 # 회귀계수에 벌점함수를 줌 -> ridge & lasso
@@ -65,7 +61,6 @@ ridge.fit <- glmnet(train.X, as.factor(train.Y), alpha=0, family='binomial')
 ridge.fit$lambda[c(1,10,100)] # alpha=0 이면 ridge
 ridge.fit$beta[,c(1,10,100)] # lambda에 따라 회귀계수 달라짐
 
-#----------------------------
 
 #---- logistic + ridge with 10-fold cv
 set.seed(1)
@@ -77,7 +72,6 @@ ridge.fit <- glmnet(train.X, as.factor(train.Y), alpha=0,
                  lambda=bestlam, family='binomial')
 ridge.fit$beta # 회귀계수 크기가 다중회귀에 비해 축소(벌점 함수)
 
-#----------------------------
 
 #---- logistic + lasso
 lasso.fit <- glmnet(train.X, as.factor(train.Y), alpha=0,
@@ -85,7 +79,6 @@ lasso.fit <- glmnet(train.X, as.factor(train.Y), alpha=0,
 lasso.fit$lambda[c(1,5,10)]
 lasso.fit$beta[,c(1,5,10)]
 
-#----------------------------
 
 #---- logistic + lasso with 10-fold cv
 set.seed(1)
@@ -96,7 +89,7 @@ lasso.fit <- glmnet(train.X, as.factor(train.Y), alpha=1,
                     lambda=bestlam, family='binomial')
 lasso.fit$beta
 
-#----------------------------
+
 
 #----모형별 회귀계수 저장
 beta_hat = logit.train$coefficients
@@ -116,7 +109,7 @@ beta_hat <- cbind(beta_hat, c(ridge.fit$a0, as.vector(ridge.fit$beta)),
 colnames(beta_hat)[3:4] <- c("beta_ridge", "beta_lasso")
 head(beta_hat)
 
-#----------------------------
+
 
 #---- model evaluation(모형별 AUC 값 비교)
 library(ROCR)
@@ -135,7 +128,7 @@ rownames(auc_table) = c('Training set', 'Test set')
 colnames(auc_table) = model_names = c('Logistic','Logistic+AIC', 'Ridge', 'LASSO')
 auc_table # 모형 4개 * train set & test set의 AUC
 
-#----------------------------
+
 
 # 학습자료에서의 각 기준에 따른 절단값 찾기
 cut_sel = matrix(0, nrow = 4, ncol = 3)
@@ -151,6 +144,7 @@ for (i in 1:4){
 # cut_sel 열 <- 오분류율 최소화, 민감도 0.5 이상, f1 최대화
 # cut_sel 행 <- 모형 4개
 # 각 절단값에 따라 test set 의 결과 출력
+
 
 
 # 오분류율 최소화
